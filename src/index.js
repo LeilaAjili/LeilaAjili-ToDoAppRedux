@@ -1,12 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import {Provider} from 'react-redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import TodoReducer from './reducer/reducer'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+const store = compose(window.devToolsExtension ? window.devToolsExtension() : f => f)(createStore)(TodoReducer)
+
+
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
     <App />
+    </Provider>
+   
   </React.StrictMode>,
   document.getElementById('root')
 );
