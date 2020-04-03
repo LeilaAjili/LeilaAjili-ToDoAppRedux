@@ -1,7 +1,8 @@
 import {
     ADD_TODO,
     DELETE_TODO,
-    COMPLETE_TODO
+    COMPLETE_TODO,
+    EDIT_TODO
 } from "../constants/actionsTypes"
 
 
@@ -15,11 +16,13 @@ const data = [
 
 const TodoReducer = (state= data, action) => {
     switch (action.type){
+
+
         case ADD_TODO:
             return [
                 ...state,
                 {
-                    id : Math.random,
+                    id : Math.random(),
                     text : action.payload.text,
                     isComplete : false
                 }
@@ -29,7 +32,15 @@ const TodoReducer = (state= data, action) => {
             return state.filter(todo => todo.id !== action.payload)
 
         case COMPLETE_TODO :
-            return state.map(todo => todo.id === action.payload ? {...todo, isComplete:!todo.isComplete} : todo)
+            return state.map(todo => todo.id === action.payload ? {...todo, isComplete: !todo.isComplete} : todo)
+
+
+
+
+        case EDIT_TODO :
+            return state.map(todo => todo.id === action.index ? {...todo, 
+                text : action.payload} : todo)
+
 
         default:
             return state

@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {connect} from 'react-redux';
+
+
+
 import {
     addTodo,
-    deleteTodo,
-    completeTodo
+    
 } from '../../actions/actions'
 
 import './form.css'
@@ -39,19 +41,12 @@ handleChangeTask=(e)=>{
         
     }
 
+   
 
 
-    // handleDelete=(i)=>{
-    //     this.setState({
-    //         tasks:this.state.tasks.filter((el,index)=> index !==i)
-    //     })
-    // }
-     
-    // handleComplete=(i)=>{
-    //   this.setState({
-    //         tasks:this.state.tasks.map((el,index)=> index === i ? {...el, check:!el.check}:el)
-    //     })
-    //     }
+
+    
+    
 
     render(){
         
@@ -74,24 +69,6 @@ handleChangeTask=(e)=>{
                         </div>  
                     </div>   
                 </div>
-                <div className="col-lg-2 "></div>
-            </div>
-            <div class="row div">
-               <div class="col-lg-2 "></div>
-               <div class="col-lg-8  ">
-               <ul id="myUL">
-                    {this.props.tasks.map((el)=>
-                    <li  key={el.id} ><h3 className={el.isComplete?"complete": "undo"} >{el.text}</h3>
-                    <div className="buttons">
-                    <button onClick={()=>this.props.completeTodo(el.id)}>{el.isComplete?"undo":"complete"}</button>
-                    <button onClick={()=>this.props.deleteTodo(el.id)}>delete</button>
-                    </div>
-                    </li>    
-     )
- }   
-                  </ul>
-               </div>
-               <div class="col-lg-2 "></div>
             </div>
             </div>
     </div> 
@@ -105,11 +82,7 @@ const mapStateToProps = state =>{
 
 const mapDispatchToProps = dispatch => {
     return{
-        addTodo : (payload) => dispatch (addTodo(payload)),
-        deleteTodo : (payload) => dispatch (deleteTodo(payload)),
-        completeTodo : (payload) => dispatch (completeTodo (payload))
-
-
+        addTodo : (payload) => dispatch (addTodo(payload))
     }
 }
 
